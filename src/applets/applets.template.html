@@ -1,0 +1,7 @@
+@for (item of selectedCategories(); track $index; let idx = $index) {
+<div class="row">
+  <span class="btn btn-light m-2 text-start">{{ item }}</span>
+</div>
+} @empty {
+<span>There are no applets.</span>
+}

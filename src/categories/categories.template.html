@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-4">
+    <h2>Categories</h2>
+    <div class="row p-1">
+      <input type="search" class="border border-primary-subtle" [(ngModel)]="search" placeholder="Search applets" />
+    </div>
+    @for (item of searchResults(); track $index; let idx = $index) {
+    <div class="row p-2">
+      <button
+        class="btn text-start"
+        [ngClass]="{'bg-primary': idx===selected(), 'bg-light': idx!==selected() }"
+        (click)="select(idx)"
+      >
+        {{ item }}
+
+        <counter
+          [category]="item"
+          [search]="search()"
+          [applets]="lib().applets"
+          [selectedName]="selectedName()"
+        ></counter>
+      </button>
+    </div>
+    } @empty {
+    <span>There are no items to display.</span>
+    }
+  </div>
+  <div class="col-8">
+    <h2>Applets</h2>
+    <applets
+      [applets]="lib().applets"
+      [selected]="selectedName()"
+      [search]="search()"
+    ></applets>
+  </div>
+</div>
